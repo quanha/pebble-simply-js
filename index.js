@@ -1,5 +1,5 @@
 simply.on('singleClick', function(e) {
-  simply.subtitle('Pressed ' + e.button + '!');
+  simply.subtitle('Loading weather info...');
   if (e.button === 'up') {
     navigator.geolocation.getCurrentPosition(function(pos) {
       var coords = pos.coords;
@@ -10,18 +10,12 @@ simply.on('singleClick', function(e) {
             "Description: " + data.weather[0].description +  "\n" +
             "Temperature: " + data.main.temp + " (" + data.main.temp_min + " - " + data.main.temp_max + ")" + "\n" +
             "Humidity: " + data.main.humidity;
-        Pebble.showSimpleNotificationOnPebble('Open Weather', body);
+        Pebble.showSimpleNotificationOnPebble('OpenWeatherAPI', body);
       });
     });
   }
 });
 
-simply.on('longClick', function(e) {
-  simply.vibe();
-  simply.subtitle('You held the ' + e.button + ' button!');
-});
-
 simply.setText({
-  title: 'Simply Demo!',
-  body: 'This is a demo. Press buttons or tap the watch!',
+  title: 'Welcome!!!'
 }, true);
