@@ -1,19 +1,20 @@
-console.log('Simply.js demo!');
-
 simply.on('singleClick', function(e) {
-  console.log(util2.format('single clicked $button!', e));
   simply.subtitle('Pressed ' + e.button + '!');
+  if (e.button === 'up') {
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      var coords = pos.coords;
+      var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?' +
+          'lat=' + coords.latitude + '&lon=' + coords.longitude + '&units=metric';
+      ajax({ url: weatherUrl, type: 'json' }, function(data) {
+        simply.text({ title: data.name, subtitle: data.main.temp });
+      });
+    });
+  }
 });
 
 simply.on('longClick', function(e) {
-  console.log(util2.format('long clicked $button!', e));
   simply.vibe();
-  simply.scrollable(e.button !== 'select');
-});
-
-simply.on('accelTap', function(e) {
-  console.log(util2.format('tapped accel axis $axis $direction!', e));
-  simply.subtitle('Tapped ' + (e.direction > 0 ? '+' : '-') + e.axis + '!');
+  simply.subtitle('You held the ' + e.button + ' button!');
 });
 
 simply.setText({
