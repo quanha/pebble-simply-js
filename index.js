@@ -3,8 +3,8 @@ simply.on('singleClick', function(e) {
   if (e.button === 'up') {
     navigator.geolocation.getCurrentPosition(function(pos) {
       var coords = pos.coords;
-      var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?' +
-          'lat=' + coords.latitude + '&lon=' + coords.longitude + '&units=metric';
+      var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?&appid=b6907d289e10d714a6e88b30761fae22' +
+          '&lat=' + coords.latitude + '&lon=' + coords.longitude + '&units=metric';
       ajax({ url: weatherUrl, type: 'json' }, function(data) {
         simply.text({ title: data.name, subtitle: data.main.temp });
       });
