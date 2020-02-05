@@ -5,9 +5,14 @@ simply.on('singleClick', function(e) {
       var coords = pos.coords;
       var weatherUrl = 'https://samples.openweathermap.org/data/2.5/weather?appid=b6907d289e10d714a6e88b30761fae22&lat=' + coords.latitude + '&lon=' + coords.longitude;
       ajax({ url: weatherUrl, type: 'json' }, function(data) {
-        simply.text({ title: data.name, subtitle: data.main.temp});
-        Pebble.showSimpleNotificationOnPebble('Hello!',
-  'Notifications from JavaScript? Welcome to the future!');
+        var temp = data.main.temp;
+        temp = (temp - 32) * 5 /9
+        var body = 
+            "Name:" + data.name + "\n" +
+            "Description: " + data.weather.description +  "\n" +
+            "Temperature: " + temp + "\n" +
+            "Humidity: " + data.main.humidity;
+        Pebble.showSimpleNotificationOnPebble('Open Weather', body);
       });
     });
   }
