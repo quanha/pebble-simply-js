@@ -6,9 +6,9 @@ simply.on('singleClick', function(e) {
       var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?appid=243d56456673442f6e9ca2467363b70c&lat=' + coords.latitude + '&lon=' + coords.longitude + '&units=metric';
       ajax({ url: weatherUrl, type: 'json' }, function(data) {
         var body = 
-            "Name:" + data.name + "\n" +
+            "Name: " + data.name + "\n" +
             "Description: " + data.weather[0].description +  "\n" +
-            "Temperature: " + data.main.temp + "(" + data.main.temp_min + " ~ " + data.main.temp_max + ")" + "\n" +
+            "Temperature: " + data.main.temp + " (" + data.main.temp_min + " - " + data.main.temp_max + ")" + "\n" +
             "Humidity: " + data.main.humidity;
         Pebble.showSimpleNotificationOnPebble('Open Weather', body);
       });
