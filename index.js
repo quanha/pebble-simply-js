@@ -11,6 +11,7 @@ simply.on('singleClick', function(e) {
             "Temperature: " + data.main.temp + " (" + data.main.temp_min + " - " + data.main.temp_max + ")" + "\n" +
             "Humidity: " + data.main.humidity;
         Pebble.showSimpleNotificationOnPebble('OpenWeatherAPI', body);
+        simply.subtitle('');
       });
     });
   }
