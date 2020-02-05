@@ -6,7 +6,6 @@ simply.on('singleClick', function(e) {
       var weatherUrl = 'https://samples.openweathermap.org/data/2.5/weather?id=2172797&appid=b6907d289e10d714a6e88b30761fae22&lat=' + coords.latitude + '&lon=' + coords.longitude + '&units=metric';
       ajax({ url: weatherUrl, type: 'json' }, function(data) {
         simply.text({ title: data.name, subtitle: data.main.temp });
-        Pebble.showSimpleNotificationOnPebble('Hello!', 'Notifications from JavaScript? Welcome to the future!');
       });
     });
   }
